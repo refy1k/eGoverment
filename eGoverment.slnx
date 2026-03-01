@@ -1,0 +1,6 @@
+<Solution>
+  <Project Path="CivilianModule/CivilianModule.csproj">
+    <Deploy Solution="Debug|*" />
+  </Project>
+  <Project Path="WebAPIModule/WebAPIModule.csproj" />
+</Solution>

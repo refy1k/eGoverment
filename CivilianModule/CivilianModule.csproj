@@ -52,7 +52,7 @@
 		<MauiIcon Include="Resources\AppIcon\beradmappico.png" Color="#512BD4" />
 
 		<!-- Splash Screen -->
-		<MauiSplashScreen Include="Resources\Splash\splashscreen.png" Color="#174349" BaseSize="123,194" />
+		<MauiSplashScreen Include="Resources\Splash\splashscreen.png" Color="#16A450" BaseSize="173, 216" />
 		<!--<MauiSplashScreen Include="Resources\Splash\splash.svg" Color="#512BD4" BaseSize="128,128" />-->
 
 		<!-- Images -->
@@ -67,12 +67,17 @@
 	</ItemGroup>
 
 	<ItemGroup>
-		<PackageReference Include="Microsoft.Maui.Controls" Version="$(MauiVersion)" />
-		<PackageReference Include="Microsoft.Extensions.Logging.Debug" Version="10.0.0" />
+	  <AndroidResource Remove="Pages\Auth\**" />
+	  <Compile Remove="Pages\Auth\**" />
+	  <EmbeddedResource Remove="Pages\Auth\**" />
+	  <MauiCss Remove="Pages\Auth\**" />
+	  <MauiXaml Remove="Pages\Auth\**" />
+	  <None Remove="Pages\Auth\**" />
 	</ItemGroup>
 
 	<ItemGroup>
-	  <Folder Include="Pages\Auth\" />
+		<PackageReference Include="Microsoft.Maui.Controls" Version="$(MauiVersion)" />
+		<PackageReference Include="Microsoft.Extensions.Logging.Debug" Version="10.0.0" />
 	</ItemGroup>
 
 	<ItemGroup>
@@ -91,6 +96,9 @@
 	</ItemGroup>
 
 	<ItemGroup>
+	  <MauiXaml Update="Pages\MainPages\StartPageNoAuth.xaml">
+	    <Generator>MSBuild:Compile</Generator>
+	  </MauiXaml>
 	  <MauiXaml Update="Pages\Other\SpecialSettings.xaml">
 	    <Generator>MSBuild:Compile</Generator>
 	  </MauiXaml>

@@ -16,6 +16,6 @@
             </VerticalStackLayout>
         </Border>
 
-        <Button Text="Дополнительные натсройки" Grid.Row="1" HeightRequest="30" WidthRequest="300" Clicked="OnOpenSpecialFeatures"/>
+        <Button Text="Дополнительные настройки" Grid.Row="1" HeightRequest="30" WidthRequest="300" Clicked="OnOpenSpecialFeatures"/>
     </Grid>
 </ContentPage>

@@ -4,7 +4,6 @@
              x:Class="CivilianModule.Pages.MainPages.StartPageNoAuth">
     <VerticalStackLayout>
         <Border StrokeThickness="0" HeightRequest="70">
-
             <Button Text="Войти" WidthRequest="100" HeightRequest="50" HorizontalOptions="End" Margin="5, 0" Clicked="Button_Auth"/>
         </Border>
     </VerticalStackLayout>

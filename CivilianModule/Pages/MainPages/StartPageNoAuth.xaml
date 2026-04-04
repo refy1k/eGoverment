@@ -1,11 +1,333 @@
-<?xml version="1.0" encoding="utf-8" ?>
-<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
-             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
-             x:Class="CivilianModule.Pages.MainPages.StartPageNoAuth">
-    <VerticalStackLayout>
-        <Border StrokeThickness="0" HeightRequest="70">
+<ContentPage
+    x:Class="CivilianModule.Pages.MainPages.StartPageNoAuth"
+    xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+    xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+    BackgroundColor="#F4F7FB">
 
-            <Button Text="Войти" WidthRequest="100" HeightRequest="50" HorizontalOptions="End" Margin="5, 0" Clicked="Button_Auth"/>
-        </Border>
-    </VerticalStackLayout>
+    <Grid RowDefinitions="*">
+        <ScrollView>
+            <VerticalStackLayout Spacing="18" Padding="16,12,16,24">
+
+                <!-- Верхний блок -->
+                <Border
+                    StrokeShape="RoundRectangle 24"
+                    Background="#0F5FDB"
+                    Padding="20">
+                    <VerticalStackLayout Spacing="10">
+                        <Label
+                            Text="Цифровые услуги для жителей муниципального округа"
+                            FontSize="24"
+                            TextColor="#EAF2FF" />
+
+                        <Label
+                            Text="Авторизуйтесь, чтобы подавать обращения, просматривать документы и пользоваться услугами организаций."
+                            FontSize="13"
+                            TextColor="#D8E7FF"
+                            LineBreakMode="WordWrap" />
+
+                        <Button
+                            Text="Войти или зарегистрироваться"
+                            Clicked="OnLoginClicked"
+                            BackgroundColor="White"
+                            TextColor="#0F5FDB"
+                            FontAttributes="Bold"
+                            CornerRadius="14"
+                            HeightRequest="50"
+                            Margin="0,8,0,0" />
+                    </VerticalStackLayout>
+                </Border>
+
+                <!-- Заголовок баннеров -->
+                <VerticalStackLayout Spacing="4">
+                    <Label
+                        Text="Популярные услуги"
+                        FontSize="22"
+                        FontAttributes="Bold"
+                        TextColor="#1B1F23" />
+                    <Label
+                        Text="Быстрый переход к самым востребованным разделам"
+                        FontSize="13"
+                        TextColor="#6B7280" />
+                </VerticalStackLayout>
+
+                <!-- Карусель -->
+                <CarouselView HeightRequest="350"
+              ItemsSource="{Binding Banners}">
+    <CarouselView.ItemTemplate>
+        <DataTemplate>
+            <Border StrokeShape="RoundRectangle 22">
+                <Border.GestureRecognizers>
+                    <TapGestureRecognizer
+                        CommandParameter="{Binding .}"
+                        Tapped="OnBannerTapped" />
+                </Border.GestureRecognizers>
+
+                <Grid>
+                    <Image
+                        Source="{Binding Image}"
+                        Aspect="AspectFill"/>
+
+                    <Grid BackgroundColor="#66000000"/>
+
+                    <VerticalStackLayout
+                        VerticalOptions="End"
+                        Padding="16">
+                        <Label
+                            Text="{Binding Title}"
+                            FontSize="18"
+                            FontAttributes="Bold"
+                            TextColor="White"/>
+                    </VerticalStackLayout>
+                </Grid>
+            </Border>
+        </DataTemplate>
+    </CarouselView.ItemTemplate>
+</CarouselView>
+
+                <IndicatorView
+    x:Name="carouselIndicator"
+    IndicatorColor="#C7D2E0"
+    SelectedIndicatorColor="#0F5FDB"
+    HorizontalOptions="Center" />
+
+                <!-- Быстрые действия -->
+                <VerticalStackLayout Spacing="4" Margin="0,6,0,0">
+                    <Label
+                        Text="Быстрые действия"
+                        FontSize="22"
+                        FontAttributes="Bold"
+                        TextColor="#1B1F23" />
+                    <Label
+                        Text="Основные разделы приложения"
+                        FontSize="13"
+                        TextColor="#6B7280" />
+                </VerticalStackLayout>
+
+                <Grid
+                    ColumnDefinitions="*,*"
+                    RowDefinitions="Auto,Auto"
+                    ColumnSpacing="12"
+                    RowSpacing="12">
+
+                    <Border
+                        Grid.Row="0"
+                        Grid.Column="0"
+                        StrokeShape="RoundRectangle 18"
+                        Background="White"
+                        Padding="14">
+                        <VerticalStackLayout Spacing="10">
+                            <Label
+                                Text="📝"
+                                FontSize="28" />
+                            <Label
+                                Text="Обращения"
+                                FontSize="17"
+                                FontAttributes="Bold"
+                                TextColor="#111827" />
+                            <Label
+                                Text="Подача заявлений и обращений в администрацию"
+                                FontSize="12"
+                                TextColor="#6B7280" />
+                            <Button
+                                Text="Открыть"
+                                Clicked="OnAppealsClicked"
+                                BackgroundColor="#E8F0FF"
+                                TextColor="#0F5FDB"
+                                CornerRadius="12"
+                                HeightRequest="40" />
+                        </VerticalStackLayout>
+                    </Border>
+
+                    <Border
+                        Grid.Row="0"
+                        Grid.Column="1"
+                        StrokeShape="RoundRectangle 18"
+                        Background="White"
+                        Padding="14">
+                        <VerticalStackLayout Spacing="10">
+                            <Label
+                                Text="📄"
+                                FontSize="28" />
+                            <Label
+                                Text="Документы"
+                                FontSize="17"
+                                FontAttributes="Bold"
+                                TextColor="#111827" />
+                            <Label
+                                Text="Просмотр личных цифровых документов гражданина"
+                                FontSize="12"
+                                TextColor="#6B7280" />
+                            <Button
+                                Text="Открыть"
+                                Clicked="OnDocumentsClicked"
+                                BackgroundColor="#E8F0FF"
+                                TextColor="#0F5FDB"
+                                CornerRadius="12"
+                                HeightRequest="40" />
+                        </VerticalStackLayout>
+                    </Border>
+
+                    <Border
+                        Grid.Row="1"
+                        Grid.Column="0"
+                        StrokeShape="RoundRectangle 18"
+                        Background="White"
+                        Padding="14">
+                        <VerticalStackLayout Spacing="10">
+                            <Label
+                                Text="🏠"
+                                FontSize="28" />
+                            <Label
+                                Text="ЖКХ и услуги"
+                                FontSize="17"
+                                FontAttributes="Bold"
+                                TextColor="#111827" />
+                            <Label
+                                Text="Получение услуг коммунальных и иных организаций"
+                                FontSize="12"
+                                TextColor="#6B7280" />
+                            <Button
+                                Text="Открыть"
+                                Clicked="OnHousingClicked"
+                                BackgroundColor="#E8F0FF"
+                                TextColor="#0F5FDB"
+                                CornerRadius="12"
+                                HeightRequest="40" />
+                        </VerticalStackLayout>
+                    </Border>
+
+                    <Border
+                        Grid.Row="1"
+                        Grid.Column="1"
+                        StrokeShape="RoundRectangle 18"
+                        Background="White"
+                        Padding="14">
+                        <VerticalStackLayout Spacing="10">
+                            <Label
+                                Text="♻️"
+                                FontSize="28" />
+                            <Label
+                                Text="ТКО"
+                                FontSize="17"
+                                FontAttributes="Bold"
+                                TextColor="#111827" />
+                            <Label
+                                Text="Информация и обращения по вывозу твёрдых отходов"
+                                FontSize="12"
+                                TextColor="#6B7280" />
+                            <Button
+                                Text="Открыть"
+                                Clicked="OnTkoClicked"
+                                BackgroundColor="#E8F0FF"
+                                TextColor="#0F5FDB"
+                                CornerRadius="12"
+                                HeightRequest="40" />
+                        </VerticalStackLayout>
+                    </Border>
+                </Grid>
+
+                <!-- Что доступно -->
+                <VerticalStackLayout Spacing="4" Margin="0,8,0,0">
+                    <Label
+                        Text="Возможности приложения"
+                        FontSize="22"
+                        FontAttributes="Bold"
+                        TextColor="#1B1F23" />
+                    <Label
+                        Text="Основной функционал системы"
+                        FontSize="13"
+                        TextColor="#6B7280" />
+                </VerticalStackLayout>
+
+                <Border
+                    StrokeShape="RoundRectangle 20"
+                    Background="White"
+                    Padding="16">
+                    <VerticalStackLayout Spacing="14">
+                        <Grid ColumnDefinitions="Auto,*" ColumnSpacing="12">
+                            <Label Text="✔" FontSize="18" TextColor="#0F5FDB" />
+                            <Label Grid.Column="1" Text="Получение муниципальных и сопутствующих услуг" FontSize="14" TextColor="#111827" />
+                        </Grid>
+
+                        <Grid ColumnDefinitions="Auto,*" ColumnSpacing="12">
+                            <Label Text="✔" FontSize="18" TextColor="#0F5FDB" />
+                            <Label Grid.Column="1" Text="Подача обращений и заявлений в электронном виде" FontSize="14" TextColor="#111827" />
+                        </Grid>
+
+                        <Grid ColumnDefinitions="Auto,*" ColumnSpacing="12">
+                            <Label Text="✔" FontSize="18" TextColor="#0F5FDB" />
+                            <Label Grid.Column="1" Text="Просмотр личных документов и статусов обращений" FontSize="14" TextColor="#111827" />
+                        </Grid>
+
+                        <Grid ColumnDefinitions="Auto,*" ColumnSpacing="12">
+                            <Label Text="✔" FontSize="18" TextColor="#0F5FDB" />
+                            <Label Grid.Column="1" Text="Быстрый доступ к важной информации и объявлениям" FontSize="14" TextColor="#111827" />
+                        </Grid>
+                    </VerticalStackLayout>
+                </Border>
+
+                <!-- Новости -->
+                <VerticalStackLayout Spacing="4" Margin="0,8,0,0">
+                    <Label
+                        Text="Актуальная информация"
+                        FontSize="22"
+                        FontAttributes="Bold"
+                        TextColor="#1B1F23" />
+                    <Label
+                        Text="Информационные карточки для пользователя"
+                        FontSize="13"
+                        TextColor="#6B7280" />
+                </VerticalStackLayout>
+
+                <Border
+                    StrokeShape="RoundRectangle 18"
+                    Background="White"
+                    Padding="16">
+                    <VerticalStackLayout Spacing="8">
+                        <Label
+                            Text="Изменения в графике приёма граждан"
+                            FontSize="16"
+                            FontAttributes="Bold"
+                            TextColor="#111827" />
+                        <Label
+                            Text="Следите за обновлениями расписания, сроками рассмотрения обращений и важными объявлениями администрации."
+                            FontSize="13"
+                            TextColor="#6B7280" />
+                        <Button
+                            Text="Подробнее"
+                            Clicked="OnNewsClicked"
+                            BackgroundColor="#F3F6FB"
+                            TextColor="#0F5FDB"
+                            CornerRadius="12"
+                            HeightRequest="40" />
+                    </VerticalStackLayout>
+                </Border>
+
+                <Border
+                    StrokeShape="RoundRectangle 18"
+                    Background="White"
+                    Padding="16">
+                    <VerticalStackLayout Spacing="8">
+                        <Label
+                            Text="Личный кабинет гражданина"
+                            FontSize="16"
+                            FontAttributes="Bold"
+                            TextColor="#111827" />
+                        <Label
+                            Text="После авторизации пользователь получает доступ к персональным данным, услугам и истории обращений."
+                            FontSize="13"
+                            TextColor="#6B7280" />
+                        <Button
+                            Text="Перейти"
+                            Clicked="OnProfileClicked"
+                            BackgroundColor="#F3F6FB"
+                            TextColor="#0F5FDB"
+                            CornerRadius="12"
+                            HeightRequest="40" />
+                    </VerticalStackLayout>
+                </Border>
+
+            </VerticalStackLayout>
+        </ScrollView>
+    </Grid>
 </ContentPage>

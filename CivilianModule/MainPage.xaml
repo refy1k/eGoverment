@@ -7,7 +7,7 @@
         <Border StrokeShape="20" Padding="15" Grid.Row="0"
                 VerticalOptions="Center" HorizontalOptions="Center">
             <VerticalStackLayout>
-                <Label Text="Авторизация" Padding="10" x:Name="WelcomeLabel" FontSize="{OnIdiom 60, Phone=45}"/>
+                <Label Text="Авторизация" Padding="10" FontSize="{OnIdiom 60, Phone=45}"/>
 
                 <Entry Placeholder="Логин" FontSize="{OnIdiom 30, Phone=45}"/>
                 <Entry Placeholder="Пароль" FontSize="{OnIdiom 30, Phone=45} "/>
